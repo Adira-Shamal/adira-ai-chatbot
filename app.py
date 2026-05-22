@@ -1,9 +1,9 @@
 import streamlit as st
 import random
 
-# =========================
+# ====================================
 # PAGE SETTINGS
-# =========================
+# ====================================
 
 st.set_page_config(
     page_title="AI Chatbot",
@@ -11,9 +11,9 @@ st.set_page_config(
     layout="centered"
 )
 
-# =========================
+# ====================================
 # CUSTOM CSS
-# =========================
+# ====================================
 
 st.markdown("""
 <style>
@@ -63,22 +63,12 @@ html, body, [class*="css"]{
     font-weight:bold;
 }
 
-.answer-box{
-    background-color:#17172b;
-    padding:25px;
-    border-radius:18px;
-    margin-top:25px;
-    border:1px solid #7c3aed;
-    font-size:18px;
-    line-height:1.7;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
-# =========================
+# ====================================
 # TITLE
-# =========================
+# ====================================
 
 st.markdown(
     '<div class="title">🤖 AI Chatbot</div>',
@@ -90,9 +80,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# =========================
+# ====================================
 # RESPONSE FUNCTION
-# =========================
+# ====================================
 
 def chatbot_response(question):
 
@@ -101,152 +91,126 @@ def chatbot_response(question):
     responses = {
 
         "artificial intelligence":
-        [
-            """
-Artificial Intelligence (AI) is a branch of computer science that enables machines to perform tasks that normally require human intelligence. These tasks include learning, problem solving, decision making, and understanding language.
+        """
+Artificial Intelligence (AI) is a branch of computer science that enables machines to perform tasks that normally require human intelligence.
 
-AI is widely used in modern technology such as virtual assistants, self-driving cars, recommendation systems, healthcare, and robotics. It helps improve efficiency and automation in different industries.
-"""
-        ],
+These tasks include learning, reasoning, decision-making, and language understanding. AI is widely used in healthcare, robotics, automation, and virtual assistants.
+""",
 
         "generative ai":
-        [
-            """
+        """
 Generative AI is a type of Artificial Intelligence that can create new content such as text, images, videos, music, and code.
 
-Popular examples include ChatGPT and AI image generators. Generative AI is becoming very important in education, software development, media, and business industries.
-"""
-        ],
+Popular examples include ChatGPT and AI image generators. It is widely used in education, media, and software development.
+""",
 
         "prompt engineering":
-        [
-            """
-Prompt Engineering is the process of writing effective instructions or questions for AI systems in order to get better responses.
+        """
+Prompt Engineering is the process of writing effective instructions or questions for AI systems to generate better responses.
 
-It is considered an important skill in modern AI applications because the quality of prompts directly affects the quality of AI-generated output.
-"""
-        ],
+It is considered an important skill because good prompts improve the quality and accuracy of AI-generated outputs.
+""",
 
         "machine learning":
-        [
-            """
-Machine Learning is a branch of Artificial Intelligence that allows computers to learn automatically from data without being explicitly programmed.
+        """
+Machine Learning is a branch of AI that allows computers to learn automatically from data without being explicitly programmed.
 
-Machine Learning is used in recommendation systems, fraud detection, image recognition, and many modern AI applications.
-"""
-        ],
+It is used in recommendation systems, fraud detection, image recognition, and many modern technologies.
+""",
 
         "python":
-        [
-            """
-Python is one of the most popular programming languages in the world. It is known for its simple syntax and beginner-friendly structure.
+        """
+Python is one of the most popular programming languages in the world.
 
-Python is widely used in Artificial Intelligence, web development, automation, cybersecurity, and data science projects.
-"""
-        ],
+It is known for its simple syntax and is widely used in Artificial Intelligence, web development, automation, and data science.
+""",
 
         "streamlit":
-        [
-            """
-Streamlit is a Python framework used for building web applications quickly and easily.
+        """
+Streamlit is a Python framework used to create web applications quickly and easily.
 
-It is especially popular in AI and data science projects because developers can create interactive applications with very little code.
-"""
-        ],
+It is especially popular in AI and data science projects because developers can build interactive applications with minimal code.
+""",
 
         "chatgpt":
-        [
-            """
-ChatGPT is an AI chatbot developed by OpenAI. It is capable of understanding user questions and generating human-like responses.
+        """
+ChatGPT is an AI chatbot developed by OpenAI.
 
-It is used for education, coding help, writing assistance, research, and many other purposes.
-"""
-        ],
+It can understand questions and generate human-like responses. It is widely used for education, coding help, research, and content generation.
+""",
 
         "education":
-        [
-            """
-Education is the process of gaining knowledge, skills, values, and understanding. It plays an important role in personal growth and social development.
+        """
+Education is the process of gaining knowledge, skills, values, and understanding.
 
-Modern education also includes technology, online learning, and AI-based educational systems.
-"""
-        ],
+It plays an important role in personal growth and social development. Modern education also includes technology, online learning, and AI-based systems.
+""",
 
         "sports":
-        [
-            """
+        """
 Sports are physical activities that improve fitness, teamwork, discipline, and mental strength.
 
-Popular sports around the world include cricket, football, hockey, basketball, and tennis. Sports also play an important role in entertainment and international competitions.
-"""
-        ],
+Popular sports include cricket, football, hockey, basketball, and tennis.
+""",
 
         "quaid":
-        [
-            """
-Quaid-e-Azam Muhammad Ali Jinnah was the founder of Pakistan and an important political leader.
+        """
+Quaid-e-Azam Muhammad Ali Jinnah was the founder of Pakistan.
 
-He played a major role in the independence movement and worked for the rights of Muslims in the subcontinent. Pakistan achieved independence in 1947 under his leadership.
-"""
-        ],
+He played a major role in the independence movement and worked for the rights of Muslims in the subcontinent.
+""",
 
         "iqbal":
-        [
-            """
-Allama Muhammad Iqbal was a famous philosopher, poet, and thinker. His poetry inspired Muslims and promoted the idea of a separate Muslim state.
+        """
+Allama Muhammad Iqbal was a famous philosopher, poet, and thinker.
 
-He is also known as the spiritual father of Pakistan because of his vision and ideas.
-"""
-        ],
+His poetry inspired Muslims and promoted the idea of a separate Muslim state.
+""",
 
         "physics":
-        [
-            """
+        """
 Physics is the branch of science that studies matter, energy, force, motion, and the laws of the universe.
 
-It explains how objects move and interact with each other. Physics is important in engineering, technology, space science, and many other scientific fields.
-"""
-        ],
+It explains how objects move and interact with each other and is important in engineering and technology.
+""",
 
         "chemistry":
-        [
-            """
+        """
 Chemistry is the study of substances, elements, compounds, and chemical reactions.
 
-It helps us understand how materials interact and change. Chemistry is widely used in medicine, industry, agriculture, and environmental science.
-"""
-        ],
+It helps us understand how materials interact and change in daily life and industry.
+""",
 
         "biology":
-        [
-            """
+        """
 Biology is the branch of science that studies living organisms and life processes.
 
-It includes topics such as plants, animals, genetics, human body systems, and microorganisms. Biology is important in medicine and healthcare fields.
+It includes topics such as plants, animals, genetics, microorganisms, and the human body.
 """
-        ]
     }
 
     for keyword in responses:
 
         if keyword in q:
-            return random.choice(responses[keyword])
+            return responses[keyword]
 
     return f"""
 {question.title()} is an important and interesting topic.
 
-Different experts explain this topic in different ways depending on context and application. This chatbot currently provides educational and AI-related information for selected topics.
+Different experts explain this topic in different ways depending on context and application.
+
+This chatbot currently provides educational and AI-related information for selected topics.
 """
 
-# =========================
+# ====================================
 # INPUT
-# =========================
+# ====================================
 
 question = st.text_input("Ask your question")
 
-# =========================
+# ====================================
 # BUTTON
-# =========================
+# ====================================
 
 if st.button("Generate Response"):
 
@@ -258,22 +222,14 @@ if st.button("Generate Response"):
         st.session_state.current_question = question
         st.session_state.current_answer = answer
 
-# =========================
+# ====================================
 # DISPLAY CURRENT CHAT ONLY
-# =========================
+# ====================================
 
 if "current_question" in st.session_state:
 
-    st.markdown(f"""
-    <div class="answer-box">
-    <b>🧑 You:</b><br><br>
-    {st.session_state.current_question}
-    </div>
-    """, unsafe_allow_html=True)
+    st.write("### 🧑 You")
+    st.info(st.session_state.current_question)
 
-    st.markdown(f"""
-    <div class="answer-box">
-    <b>🤖 AI:</b><br><br>
-    {st.session_state.current_answer}
-    </div>
-    """, unsafe_allow_html=True)
+    st.write("### 🤖 AI")
+    st.success(st.session_state.current_answer)s
