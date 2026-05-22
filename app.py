@@ -1,5 +1,4 @@
 import streamlit as st
-import random
 
 # ====================================
 # PAGE SETTINGS
@@ -18,9 +17,17 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-#MainMenu {visibility:hidden;}
-footer {visibility:hidden;}
-header {visibility:hidden;}
+#MainMenu {
+    visibility:hidden;
+}
+
+footer {
+    visibility:hidden;
+}
+
+header {
+    visibility:hidden;
+}
 
 html, body, [class*="css"]{
     background-color:#0b1020;
@@ -232,4 +239,4 @@ if "current_question" in st.session_state:
     st.info(st.session_state.current_question)
 
     st.write("### 🤖 AI")
-    st.success(st.session_state.current_answer)s
+    st.success(st.session_state.current_answer)
