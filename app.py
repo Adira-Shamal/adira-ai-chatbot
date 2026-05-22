@@ -69,6 +69,8 @@ html, body, [class*="css"]{
     border-radius:18px;
     margin-top:25px;
     border:1px solid #7c3aed;
+    font-size:18px;
+    line-height:1.7;
 }
 
 </style>
@@ -89,13 +91,6 @@ st.markdown(
 )
 
 # =========================
-# CHAT HISTORY
-# =========================
-
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# =========================
 # RESPONSE FUNCTION
 # =========================
 
@@ -107,86 +102,128 @@ def chatbot_response(question):
 
         "artificial intelligence":
         [
-            "Artificial Intelligence (AI) enables machines to perform tasks that normally require human intelligence.",
-            "AI is widely used in healthcare, robotics, automation, and virtual assistants."
+            """
+Artificial Intelligence (AI) is a branch of computer science that enables machines to perform tasks that normally require human intelligence. These tasks include learning, problem solving, decision making, and understanding language.
+
+AI is widely used in modern technology such as virtual assistants, self-driving cars, recommendation systems, healthcare, and robotics. It helps improve efficiency and automation in different industries.
+"""
         ],
 
         "generative ai":
         [
-            "Generative AI creates new content such as text, images, videos, and music.",
-            "Examples of Generative AI include ChatGPT and AI image generators."
+            """
+Generative AI is a type of Artificial Intelligence that can create new content such as text, images, videos, music, and code.
+
+Popular examples include ChatGPT and AI image generators. Generative AI is becoming very important in education, software development, media, and business industries.
+"""
         ],
 
         "prompt engineering":
         [
-            "Prompt Engineering is the process of designing effective instructions for AI systems.",
-            "It helps AI models generate more accurate and useful responses."
+            """
+Prompt Engineering is the process of writing effective instructions or questions for AI systems in order to get better responses.
+
+It is considered an important skill in modern AI applications because the quality of prompts directly affects the quality of AI-generated output.
+"""
         ],
 
         "machine learning":
         [
-            "Machine Learning allows computers to learn patterns from data automatically.",
-            "It is used in recommendation systems, fraud detection, and self-driving cars."
+            """
+Machine Learning is a branch of Artificial Intelligence that allows computers to learn automatically from data without being explicitly programmed.
+
+Machine Learning is used in recommendation systems, fraud detection, image recognition, and many modern AI applications.
+"""
         ],
 
         "python":
         [
-            "Python is one of the most popular programming languages in the world.",
-            "It is widely used in AI, web development, and data science."
+            """
+Python is one of the most popular programming languages in the world. It is known for its simple syntax and beginner-friendly structure.
+
+Python is widely used in Artificial Intelligence, web development, automation, cybersecurity, and data science projects.
+"""
         ],
 
         "streamlit":
         [
-            "Streamlit is a Python framework used for building web applications easily.",
-            "It is very popular for AI and data science projects."
+            """
+Streamlit is a Python framework used for building web applications quickly and easily.
+
+It is especially popular in AI and data science projects because developers can create interactive applications with very little code.
+"""
         ],
 
         "chatgpt":
         [
-            "ChatGPT is an AI chatbot developed by OpenAI.",
-            "It can answer questions and generate human-like conversations."
+            """
+ChatGPT is an AI chatbot developed by OpenAI. It is capable of understanding user questions and generating human-like responses.
+
+It is used for education, coding help, writing assistance, research, and many other purposes.
+"""
         ],
 
         "education":
         [
-            "Education helps people gain knowledge and skills for personal development.",
-            "Modern education also includes technology and AI-based learning systems."
+            """
+Education is the process of gaining knowledge, skills, values, and understanding. It plays an important role in personal growth and social development.
+
+Modern education also includes technology, online learning, and AI-based educational systems.
+"""
         ],
 
         "sports":
         [
-            "Sports improve teamwork, discipline, and physical fitness.",
-            "Popular sports include cricket, football, hockey, and tennis."
+            """
+Sports are physical activities that improve fitness, teamwork, discipline, and mental strength.
+
+Popular sports around the world include cricket, football, hockey, basketball, and tennis. Sports also play an important role in entertainment and international competitions.
+"""
         ],
 
         "quaid":
         [
-            "Quaid-e-Azam Muhammad Ali Jinnah was the founder of Pakistan.",
-            "He played a major role in the independence movement."
+            """
+Quaid-e-Azam Muhammad Ali Jinnah was the founder of Pakistan and an important political leader.
+
+He played a major role in the independence movement and worked for the rights of Muslims in the subcontinent. Pakistan achieved independence in 1947 under his leadership.
+"""
         ],
 
         "iqbal":
         [
-            "Allama Iqbal was a philosopher, poet, and thinker.",
-            "His poetry inspired the idea of a separate Muslim state."
+            """
+Allama Muhammad Iqbal was a famous philosopher, poet, and thinker. His poetry inspired Muslims and promoted the idea of a separate Muslim state.
+
+He is also known as the spiritual father of Pakistan because of his vision and ideas.
+"""
         ],
 
         "physics":
         [
-            "Physics is the branch of science that studies matter, energy, motion, and forces.",
-            "It explains how objects move and interact in the universe."
+            """
+Physics is the branch of science that studies matter, energy, force, motion, and the laws of the universe.
+
+It explains how objects move and interact with each other. Physics is important in engineering, technology, space science, and many other scientific fields.
+"""
         ],
 
         "chemistry":
         [
-            "Chemistry is the study of substances, elements, and chemical reactions.",
-            "It plays an important role in medicine, industry, and daily life."
+            """
+Chemistry is the study of substances, elements, compounds, and chemical reactions.
+
+It helps us understand how materials interact and change. Chemistry is widely used in medicine, industry, agriculture, and environmental science.
+"""
         ],
 
         "biology":
         [
-            "Biology is the study of living organisms and life processes.",
-            "It includes genetics, plants, animals, and human biology."
+            """
+Biology is the branch of science that studies living organisms and life processes.
+
+It includes topics such as plants, animals, genetics, human body systems, and microorganisms. Biology is important in medicine and healthcare fields.
+"""
         ]
     }
 
@@ -195,7 +232,11 @@ def chatbot_response(question):
         if keyword in q:
             return random.choice(responses[keyword])
 
-    return f"{question.title()} is an interesting topic. This chatbot currently provides educational and AI-related information."
+    return f"""
+{question.title()} is an important and interesting topic.
+
+Different experts explain this topic in different ways depending on context and application. This chatbot currently provides educational and AI-related information for selected topics.
+"""
 
 # =========================
 # INPUT
@@ -213,23 +254,26 @@ if st.button("Generate Response"):
 
         answer = chatbot_response(question)
 
-        st.session_state.messages.append(
-            ("🧑 You", question)
-        )
-
-        st.session_state.messages.append(
-            ("🤖 AI", answer)
-        )
+        # OLD ANSWER REMOVE HOGA
+        st.session_state.current_question = question
+        st.session_state.current_answer = answer
 
 # =========================
-# DISPLAY CHAT
+# DISPLAY CURRENT CHAT ONLY
 # =========================
 
-for sender, message in st.session_state.messages:
+if "current_question" in st.session_state:
 
     st.markdown(f"""
     <div class="answer-box">
-    <b>{sender}:</b><br><br>
-    {message}
+    <b>🧑 You:</b><br><br>
+    {st.session_state.current_question}
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f"""
+    <div class="answer-box">
+    <b>🤖 AI:</b><br><br>
+    {st.session_state.current_answer}
     </div>
     """, unsafe_allow_html=True)
