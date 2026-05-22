@@ -78,9 +78,15 @@ html, body, [class*="css"]{
 # TITLE
 # =========================
 
-st.markdown('<div class="title">🤖 AI Chatbot</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="title">🤖 AI Chatbot</div>',
+    unsafe_allow_html=True
+)
 
-st.markdown('<div class="subtitle">Smart Educational Assistant</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="subtitle">Smart Educational Assistant</div>',
+    unsafe_allow_html=True
+)
 
 # =========================
 # CHAT HISTORY
@@ -102,67 +108,85 @@ def chatbot_response(question):
         "artificial intelligence":
         [
             "Artificial Intelligence (AI) enables machines to perform tasks that normally require human intelligence.",
-            "AI is widely used in healthcare, robotics, automation, and virtual assistants.",
+            "AI is widely used in healthcare, robotics, automation, and virtual assistants."
         ],
 
         "generative ai":
         [
             "Generative AI creates new content such as text, images, videos, and music.",
-            "Examples of Generative AI include ChatGPT and AI image generators.",
+            "Examples of Generative AI include ChatGPT and AI image generators."
         ],
 
         "prompt engineering":
         [
             "Prompt Engineering is the process of designing effective instructions for AI systems.",
-            "It helps AI models generate more accurate and useful responses.",
+            "It helps AI models generate more accurate and useful responses."
         ],
 
         "machine learning":
         [
             "Machine Learning allows computers to learn patterns from data automatically.",
-            "It is used in recommendation systems, fraud detection, and self-driving cars.",
+            "It is used in recommendation systems, fraud detection, and self-driving cars."
         ],
 
         "python":
         [
             "Python is one of the most popular programming languages in the world.",
-            "It is widely used in AI, web development, and data science.",
+            "It is widely used in AI, web development, and data science."
         ],
 
         "streamlit":
         [
             "Streamlit is a Python framework used for building web applications easily.",
-            "It is very popular for AI and data science projects.",
+            "It is very popular for AI and data science projects."
         ],
 
         "chatgpt":
         [
             "ChatGPT is an AI chatbot developed by OpenAI.",
-            "It can answer questions and generate human-like conversations.",
+            "It can answer questions and generate human-like conversations."
         ],
 
         "education":
         [
             "Education helps people gain knowledge and skills for personal development.",
-            "Modern education also includes technology and AI-based learning systems.",
+            "Modern education also includes technology and AI-based learning systems."
         ],
 
         "sports":
         [
             "Sports improve teamwork, discipline, and physical fitness.",
-            "Popular sports include cricket, football, hockey, and tennis.",
+            "Popular sports include cricket, football, hockey, and tennis."
         ],
 
         "quaid":
         [
             "Quaid-e-Azam Muhammad Ali Jinnah was the founder of Pakistan.",
-            "He played a major role in the independence movement.",
+            "He played a major role in the independence movement."
         ],
 
         "iqbal":
         [
             "Allama Iqbal was a philosopher, poet, and thinker.",
-            "His poetry inspired the idea of a separate Muslim state.",
+            "His poetry inspired the idea of a separate Muslim state."
+        ],
+
+        "physics":
+        [
+            "Physics is the branch of science that studies matter, energy, motion, and forces.",
+            "It explains how objects move and interact in the universe."
+        ],
+
+        "chemistry":
+        [
+            "Chemistry is the study of substances, elements, and chemical reactions.",
+            "It plays an important role in medicine, industry, and daily life."
+        ],
+
+        "biology":
+        [
+            "Biology is the study of living organisms and life processes.",
+            "It includes genetics, plants, animals, and human biology."
         ]
     }
 
@@ -171,13 +195,7 @@ def chatbot_response(question):
         if keyword in q:
             return random.choice(responses[keyword])
 
-    return f"""
-{question.title()} is an interesting topic.
-
-Different experts explain this topic in different ways depending on context and application.
-
-This chatbot currently provides educational and AI-related information.
-"""
+    return f"{question.title()} is an interesting topic. This chatbot currently provides educational and AI-related information."
 
 # =========================
 # INPUT
@@ -196,11 +214,11 @@ if st.button("Generate Response"):
         answer = chatbot_response(question)
 
         st.session_state.messages.append(
-            ("You", question)
+            ("🧑 You", question)
         )
 
         st.session_state.messages.append(
-            ("AI", answer)
+            ("🤖 AI", answer)
         )
 
 # =========================
@@ -209,20 +227,9 @@ if st.button("Generate Response"):
 
 for sender, message in st.session_state.messages:
 
-    if sender == "You":
-
-        st.markdown(f"""
-        <div class="answer-box">
-        <b>🧑 You:</b><br><br>
-        {message}
-        </div>
-        """, unsafe_allow_html=True)
-
-    else:
-
-        st.markdown(f"""
-        <div class="answer-box">
-        <b>🤖 AI:</b><br><br>
-        {message}
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown(f"""
+    <div class="answer-box">
+    <b>{sender}:</b><br><br>
+    {message}
+    </div>
+    """, unsafe_allow_html=True)
