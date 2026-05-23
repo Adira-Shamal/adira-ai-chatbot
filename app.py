@@ -1,242 +1,130 @@
 import streamlit as st
 
-# ====================================
-# PAGE SETTINGS
-# ====================================
-
-st.set_page_config(
-    page_title="AI Chatbot",
-    page_icon="🤖",
-    layout="centered"
-)
-
-# ====================================
-# CUSTOM CSS
-# ====================================
+st.set_page_config(page_title="Adira AI Chatbot", layout="centered")
 
 st.markdown("""
 <style>
-
-#MainMenu {
-    visibility:hidden;
+body {
+    background-color: #0d1117;
 }
 
-footer {
-    visibility:hidden;
+.main {
+    background-color: #0d1117;
 }
 
-header {
-    visibility:hidden;
+.title {
+    text-align: center;
+    font-size: 45px;
+    color: white;
+    font-weight: bold;
 }
 
-html, body, [class*="css"]{
-    background-color:#0b1020;
-    color:white;
-    font-family:Arial;
+.subtitle {
+    text-align: center;
+    color: #c9d1d9;
+    margin-bottom: 30px;
 }
 
-.title{
-    text-align:center;
-    font-size:55px;
-    font-weight:bold;
-    color:#a855f7;
-    margin-top:20px;
+.stTextInput > div > div > input {
+    background-color: #161b22;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #30363d;
 }
 
-.subtitle{
-    text-align:center;
-    font-size:18px;
-    color:#cfcfcf;
-    margin-bottom:30px;
-}
-
-.stTextInput input{
-    background-color:#1e1e2f;
-    color:white;
-    border-radius:12px;
-    border:2px solid #7c3aed;
-    padding:14px;
-    font-size:18px;
-}
-
-.stButton button{
-    background:linear-gradient(90deg,#7c3aed,#a855f7);
-    color:white;
-    border:none;
-    padding:14px;
-    border-radius:12px;
-    width:100%;
-    font-size:18px;
-    font-weight:bold;
+.answer-box {
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    margin-top: 20px;
+    border: 1px solid #30363d;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ====================================
-# TITLE
-# ====================================
 
-st.markdown(
-    '<div class="title">🤖 AI Chatbot</div>',
-    unsafe_allow_html=True
-)
+st.markdown("<div class='title'>🤖 Adira AI Chatbot</div>", unsafe_allow_html=True)
 
-st.markdown(
-    '<div class="subtitle">Smart Educational Assistant</div>',
-    unsafe_allow_html=True
-)
+st.markdown("<div class='subtitle'>Educational Rule-Based AI Chatbot</div>", unsafe_allow_html=True)
 
-# ====================================
-# RESPONSE FUNCTION
-# ====================================
+question = st.text_input("Ask your question:")
 
-def chatbot_response(question):
 
-    q = question.lower()
+def get_answer(question):
+
+    question = question.lower()
 
     responses = {
 
-        "artificial intelligence":
-        """
-Artificial Intelligence (AI) is a branch of computer science that enables machines to perform tasks that normally require human intelligence.
+        "what is python":
+        "Python is a powerful and beginner-friendly programming language used in AI, web development, automation, and software development.",
 
-These tasks include learning, reasoning, decision-making, and language understanding. AI is widely used in healthcare, robotics, automation, and virtual assistants.
-""",
+        "what is ai":
+        "Artificial Intelligence (AI) is a technology that allows machines to simulate human intelligence and perform smart tasks.",
 
-        "generative ai":
-        """
-Generative AI is a type of Artificial Intelligence that can create new content such as text, images, videos, music, and code.
+        "what is artificial intelligence":
+        "Artificial Intelligence is the field of computer science focused on building intelligent systems and smart machines.",
 
-Popular examples include ChatGPT and AI image generators. It is widely used in education, media, and software development.
-""",
+        "what is generative ai":
+        "Generative AI is a type of AI that can generate text, images, code, and other content automatically.",
 
-        "prompt engineering":
-        """
-Prompt Engineering is the process of writing effective instructions or questions for AI systems to generate better responses.
+        "what is machine learning":
+        "Machine Learning is a branch of AI that allows computers to learn from data and improve automatically.",
 
-It is considered an important skill because good prompts improve the quality and accuracy of AI-generated outputs.
-""",
+        "what is prompt engineering":
+        "Prompt Engineering is the process of creating effective instructions for AI models to generate accurate responses.",
 
-        "machine learning":
-        """
-Machine Learning is a branch of AI that allows computers to learn automatically from data without being explicitly programmed.
+        "what is streamlit":
+        "Streamlit is a Python framework used to build interactive web applications and AI dashboards.",
 
-It is used in recommendation systems, fraud detection, image recognition, and many modern technologies.
-""",
+        "what is chatbot":
+        "A chatbot is a software application that communicates with users and provides automated responses.",
 
-        "python":
-        """
-Python is one of the most popular programming languages in the world.
+        "what is education":
+        "Education is the process of gaining knowledge, skills, values, and understanding for personal and social development.",
 
-It is known for its simple syntax and is widely used in Artificial Intelligence, web development, automation, and data science.
-""",
+        "what is physics":
+        "Physics is the branch of science that studies matter, energy, motion, force, and the laws of nature.",
 
-        "streamlit":
-        """
-Streamlit is a Python framework used to create web applications quickly and easily.
+        "what is chemistry":
+        "Chemistry is the branch of science that studies substances, chemical reactions, and matter.",
 
-It is especially popular in AI and data science projects because developers can build interactive applications with minimal code.
-""",
+        "what is biology":
+        "Biology is the scientific study of living organisms including humans, animals, and plants.",
 
-        "chatgpt":
-        """
-ChatGPT is an AI chatbot developed by OpenAI.
+        "who is quaid e azam":
+        "Quaid-e-Azam Muhammad Ali Jinnah was the founder of Pakistan and the first Governor-General of Pakistan.",
 
-It can understand questions and generate human-like responses. It is widely used for education, coding help, research, and content generation.
-""",
+        "who is allama iqbal":
+        "Allama Muhammad Iqbal was a famous philosopher, poet, and thinker who inspired the idea of Pakistan.",
 
-        "education":
-        """
-Education is the process of gaining knowledge, skills, values, and understanding.
+        "what is computer":
+        "A computer is an electronic machine that processes data and performs tasks according to instructions.",
 
-It plays an important role in personal growth and social development. Modern education also includes technology, online learning, and AI-based systems.
-""",
-
-        "sports":
-        """
-Sports are physical activities that improve fitness, teamwork, discipline, and mental strength.
-
-Popular sports include cricket, football, hockey, basketball, and tennis.
-""",
-
-        "quaid":
-        """
-Quaid-e-Azam Muhammad Ali Jinnah was the founder of Pakistan.
-
-He played a major role in the independence movement and worked for the rights of Muslims in the subcontinent.
-""",
-
-        "iqbal":
-        """
-Allama Muhammad Iqbal was a famous philosopher, poet, and thinker.
-
-His poetry inspired Muslims and promoted the idea of a separate Muslim state.
-""",
-
-        "physics":
-        """
-Physics is the branch of science that studies matter, energy, force, motion, and the laws of the universe.
-
-It explains how objects move and interact with each other and is important in engineering and technology.
-""",
-
-        "chemistry":
-        """
-Chemistry is the study of substances, elements, compounds, and chemical reactions.
-
-It helps us understand how materials interact and change in daily life and industry.
-""",
-
-        "biology":
-        """
-Biology is the branch of science that studies living organisms and life processes.
-
-It includes topics such as plants, animals, genetics, microorganisms, and the human body.
-"""
+        "what is internet":
+        "The internet is a global network that connects computers and allows communication and information sharing worldwide."
     }
 
-    for keyword in responses:
+    for key in responses:
+        if key in question:
+            return responses[key]
 
-        if keyword in q:
-            return responses[keyword]
+    return "Sorry, I can only answer educational and AI-related questions in this chatbot demo."
 
-    return f"""
-{question.title()} is an important and interesting topic.
-
-Different experts explain this topic in different ways depending on context and application.
-
-This chatbot currently provides educational and AI-related information for selected topics.
-"""
-
-# ====================================
-# INPUT
-# ====================================
-
-question = st.text_input("Ask your question")
-
-# ====================================
-# BUTTON
-# ====================================
 
 if st.button("Generate Response"):
 
-    if question:
+    if question.strip() == "":
+        st.warning("Please enter a question.")
 
-        answer = chatbot_response(question)
+    else:
+        answer = get_answer(question)
 
-        # OLD ANSWER REMOVE HOGA
-        st.session_state.current_question = question
-        st.session_state.current_answer = answer
-
-# ====================================
-# DISPLAY CURRENT CHAT ONLY
-# ====================================
-
-if "current_question" in st.session_state:
-
-    st.write("### 🧑 You")
-    st.info(st.session_state.current_question)
-
-    st.write("### 🤖 AI")
-    st.success(st.session_state.current_answer)
+        st.markdown(f"""
+        <div class="answer-box">
+        <h3>🤖 AI Response</h3>
+        <p>{answer}</p>
+        </div>
+        """, unsafe_allow_html=True)
